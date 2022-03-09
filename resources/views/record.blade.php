@@ -92,7 +92,7 @@
               <th>Action</thd>
           </tr>
     </thead>
-          
+          <!-- mnaidh  -->
     <tbody>
     <?php 
           for($i=0;$i<sizeof($data);$i++)
