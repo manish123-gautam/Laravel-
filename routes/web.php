@@ -3,6 +3,7 @@
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\UpdateController;
+use App\Http\Controller\StateController;
 
 
 
@@ -23,6 +24,12 @@ Route::get("update/{id}",[UpdateController::class,'update']);
 Route::get("delete/{id}",[UpdateController::class, 'delete']);
 Route::post("edit",[UpdateController::class,'edit']);
 
+Route::get('/state', function(){
+    return view('state');
+});
+Route::post("adstate",[StateController::class,'addstate']);
+
+
 
 
 
@@ -30,4 +37,3 @@ Route::post("edit",[UpdateController::class,'edit']);
 
 
 //Route::get('/user','StudentController@student');
-//Route::get("user/{id}",'UserController@show');

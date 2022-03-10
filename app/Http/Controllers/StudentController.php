@@ -7,6 +7,11 @@ use App\Models\Student;
 
 class StudentController extends Controller
 {
+    public function index()
+    {
+        return view('index');
+    }
+
     public function student(Request $request)
     {      
             $stu = new Student;

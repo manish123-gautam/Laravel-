@@ -46,6 +46,18 @@
         <li class="nav-item">
           <a class="nav-link" href="/record">Show Record</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/state">Add State</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Add City</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Add Pincode</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Add Areacode</a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
@@ -74,8 +86,9 @@
   <h1 class="text-center mt-5">Student Registration</h1>
       <hr class="w-50 m-auto"/>
     <div class="container form box bg-light border border-primary mt-5 p-5" style="box-shadow:0px 0px 10px black;">
-      <form action="user" method="post">
-        @csrf
+      <!-- <form action="user" method="post"> -->
+        <form id="addform">
+        {{ csrf_field() }}
         <div class="row">
           <div class="col-sm-4" >
             <label>First <span class="text-primary">Name</span>:</label>
@@ -154,12 +167,6 @@
             <textarea name="address" rows="3" cols="3" placeholder="Enter Student Branch" class="form-control"></textarea>    
           </div>  
         </div>
-        <!-- <div class="row mt-3">
-          <div class="col-sm-12">
-            <label>Profile <span class="text-primary">Photo</span>:</label>
-            <input type="file" name="file" class="form-control"/>    
-          </div>  
-        </div> -->
         <div class="row mt-3 mb-5">
           <div class="col-sm-6 m-auto">
             <input type="submit" name="submit" value="Registrater"  class="form-control btn btn-outline-primary"/>    
@@ -172,5 +179,31 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+
+<script>
+   $(document).ready(function () {
+    $('#addform').on('submit', function(e){
+        e.preventDefault();
+
+        $.ajax({
+          type: "POST",
+          url: "/user",
+          data: $('#addform').serialize(),
+          success: function (responce) {
+            console.log(responce)
+            alert("Data Saved");
+          },
+          error: function(error){
+            console.log(error)
+            alert("Data Not Saved");
+          }
+        });
+    });
+  });
+</script>
+
 </body>
 </html>

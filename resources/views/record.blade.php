@@ -68,7 +68,88 @@
     </div>
   </div>
 </nav>    
+    </section>
+
     <section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="studenteditrecord" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+       
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-4">
+            First Name:
+            <input type="text" name="name" id="fname" class="form-control"/>
+          </div>
+          <div class="col-sm-4">
+            Last Name:
+            <input type="text" name="name" id="lname" class="form-control"/>
+          </div>
+          <div class="col-sm-4">
+            Email:
+            <input type="text" name="name" id="email" class="form-control"/>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-sm-4">
+            Gender:
+            <input type="text" name="gender" id="gender" class="form-control"/>
+          </div>
+          <div class="col-sm-4">
+            DOB:
+            <input type="text" name="dob" id="dob" class="form-control"/>
+          </div>
+          <div class="col-sm-4">
+            Userame:
+            <input type="text" name="username" id="username" class="form-control"/>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-sm-4">
+            Age:
+            <input type="text" name="age" id="age" class="form-control"/>
+          </div>
+          <div class="col-sm-4">
+            City:
+            <input type="text" name="city" id="city" class="form-control"/>
+          </div>
+          <div class="col-sm-4">
+            Sate:
+            <input type="text" name="state" id="state" class="form-control"/>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-sm-6">
+            Fee:
+            <input type="text" name="fee" id="fee" class="form-control"/>
+          </div>
+          <div class="col-sm-6">
+            Branch:
+            <input type="text" name="branch" id="branch" class="form-control"/>
+          </div>
+        </div>
+        <div class="row mb-4 mt-3">
+          <div class="col-sm-12">
+            Address:
+            <input type="text" name="address" id="address" class="form-control"/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary editbtn" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save Date</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </section>
       
   <section class="">
   <h1 class="text-center mt-5">Student Record</h1>
@@ -94,30 +175,34 @@
     </thead>
           <!-- mnaidh  -->
     <tbody>
-    <?php 
+    <?php
+          $num=0; 
           for($i=0;$i<sizeof($data);$i++)
           {
           ?>
           <tr>
-            <td>{{$data[$i]->id}}</td>
-            <td>{{$data[$i]->fname}}</td>
-            <td>{{$data[$i]->lname}}</td>
-            <td>{{$data[$i]->email}}</td>
-            <td>{{$data[$i]->dob}}</td>
-            <td>{{$data[$i]->username}}</td>
-            <td>{{$data[$i]->gender}}</td>
-            <td>{{$data[$i]->age}}</td>
-            <td>{{$data[$i]->state}}</td>
-            <td>{{$data[$i]->city}}</td>
-            <td>{{$data[$i]->fee}}</td>
-            <td>{{$data[$i]->branch}}</td>
-            <td>{{$data[$i]->address}}</td>
+            <td id="studentid">{{$data[$i]->id}}</td>
+            <td id="fname_l">{{$data[$i]->fname}}</td>
+            <td id="lname_l">{{$data[$i]->lname}}</td>
+            <td id="email_l">{{$data[$i]->email}}</td>
+            <td id="dob_l">{{$data[$i]->dob}}</td>
+            <td id="username_l">{{$data[$i]->username}}</td>
+            <td id="gender_l">{{$data[$i]->gender}}</td>
+            <td id="age_l">{{$data[$i]->age}}</td>
+            <td id="state_l">{{$data[$i]->state}}</td>
+            <td id="city_l">{{$data[$i]->city}}</td>
+            <td id="fee_l">{{$data[$i]->fee}}</td>
+            <td id="branch_l">{{$data[$i]->branch}}</td>
+            <td id="address_l">{{$data[$i]->address}}</td>
             <td>
-                <a href={{"update/".$data[$i]->id}}> <button class="btn btn-primary">Update</button></a>
+                <!-- <a href={{"update/".$data[$i]->id}}> <button class="btn btn-primary" 
+                data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button></a> -->
+                <button class="btn btn-primary editbtn" id="editbtn{{$num}}" data-bs-toggle="modal" data-bs-target="#studenteditrecord">Update</button>
                 <a href={{"delete/".$data[$i]->id}}><button class="btn btn-danger">Delete</button></a>
             </td>
           </tr>
     <?php
+          $num++;
           }
     ?>
     </tbody>
@@ -128,5 +213,47 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
+
+<script>
+  $(document).ready(function () {
+    $("#editbtn").click(function(){
+    // alert($("#fname_l").text());
+      var fname = $("#fname_l").text();
+      $("#fname").val(fname);
+      var lname = $("#lname_l").text();
+      $("#lname").val(lname);
+      var email = $("#email_l").text();
+      $("#email").val(email);
+      var dob = $("#dob_l").text();
+      $("#dob").val(dob);
+      var gender = $("#gender_l").text();
+      $("#gender").val(gender);
+      var username = $("#username_l").text();
+      $("#username").val(username);
+      var age = $("#age_l").text();
+      $("#age").val(age);
+      var city = $("#city_l").text();
+      $("#city").val(city);
+      var state = $("#state_l").text();
+      $("#state").val(state);
+      var fee = $("#fee_l").text();
+      $("#fee").val(fee);
+      var branch = $("#branch_l").text();
+      $("#branch").val(branch);
+      var address = $("#address_l").text();
+      $("#address").val(address);
+
+
+    });
+
+
+  });
+</script>
+
+
 </body>
 </html>

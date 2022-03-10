@@ -39,4 +39,6 @@ class UpdateController extends Controller
         $data->delete();
         return redirect('record');
     }
+
+    
 }
